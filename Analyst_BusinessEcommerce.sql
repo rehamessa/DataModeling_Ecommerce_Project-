@@ -11,4 +11,30 @@ select Hour(order_date) As Time,
 From fact_order
 Group by Time
 order by Order_Count desc;
+
+-- 3.What is the preferred way to pay in the e-commerce?
+
+SELECT 
+    payment_type, 
+    COUNT(fact_order.order_id) as order_count 
+FROM 
+    fact_order join fact_payment using(order_id)
+GROUP BY 
+    payment_type 
+ORDER BY 
+    order_count DESC
+    limit 1;
+    
+-- 4-How many installments are usually done when paying in the e-commerce?
+
+SELECT 
+    payment_installments, 
+    COUNT(payment_sequential) AS frequency 
+FROM 
+     fact_payment 
+GROUP BY 
+   payment_installments
+ORDER BY 
+    frequency DESC;
+
     
