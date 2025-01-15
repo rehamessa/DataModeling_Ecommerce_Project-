@@ -74,7 +74,7 @@ select count(*) as latness,
 from Dim_feedback join fact_order using(order_id)
 where delivered_date >estimated_time_delivery;
 
--- 9-What is the delay for delivery/shipping in each state?
+-- 9-How long the delay for delivery/shipping in each state?
 select customer_state,
 	avg(timestampdiff(second,pickup_date,delivered_date)/3600) as delays_hours
     from fact_order join dim_customer using(user_name)
